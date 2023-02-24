@@ -1,35 +1,35 @@
-// import { useDispatch } from "react-redux";
-import Card from "../component/UI/Card";
 import classes from "./ProductItem.module.css";
-// import { itemAction } from "../../context/CartItem";
-const ProductItem = (props) => {
-  const { id, imageUrl, title, price } = props;
-  //   const dispatch = useDispatch();
+// import Form from "./Form";
+import { useContext } from "react";
+import CartContext from "../store/cart-context";
 
-  const cartHandler = () => {
-    const obj = {
-      id: id,
-      title: title,
-      imgUrl: imageUrl,
-      quantity: 1,
-      amount: price,
-    };
-    // dispatch(itemAction.addItem(obj));
+const ProductItem = (props) => {
+  // const price = `$${price.toFixed(2)}`;
+
+  const cartCtx = useContext(CartContext);
+
+  const addToCartHandler = (amount) => {
+    cartCtx.addItem({
+      id: props.id,
+      title: props.title,
+      amount: amount,
+      price: props.price,
+    });
+    console.log(cartCtx.items);
   };
 
   return (
     <li className={classes.item}>
-      <Card>
-        <header>
-          <div>{<img src={imageUrl}></img>}</div>
-        </header>
-        <div className={classes.pribtn}>
-          <div className={classes.price}>${price.toFixed(2)}</div>
-          <button className={classes.btn} onClick={cartHandler}>
-            <span className={classes.btn2}>Add To Cart</span>
-          </button>
-        </div>
-      </Card>
+      <h3>{props.title}</h3>
+      <header>
+        <div>{<img src={props.imageUrl} alt="productImages"></img>}</div>
+      </header>
+      <div className={classes.pribtn}>
+        <div className={classes.price}>${props.price.toFixed(2)}</div>
+        {/* <Form onAddToCart={addToCartHandler} /> */}
+        <button onClick={addToCartHandler} input={{id: "amount_" + props.id}} className={classes.btn}>+ Add</button>
+    
+     </div>
     </li>
   );
 };

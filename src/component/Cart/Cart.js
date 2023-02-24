@@ -7,51 +7,41 @@ const productsArr = [
     id: "1",
     title: "Colors",
     price: 11.99,
-    quantity: 2,
+    amount: 2,
     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
   },
   {
     id: "2",
     title: "Black and white Colors",
     price: 10.5,
-    quantity: 1,
+    amount: 1,
     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
   },
   {
     id: "3",
     title: "Yellow and Black Colors",
     price: 5.5,
-    quantity: 2,
+    amount: 2,
     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
   },
   {
     id: "4",
     title: "Blue Color",
     price: 10.0,
-    quantity: 3,
+    amount: 3,
     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%204.png",
   },
 ];
 
-// const cartItemReamoveHandler = (id) => {
-//   console.log("ADD");
-//   // cartCtx.removeItem(id);
-// };
-
-// const cartItemAddHandler = (item) => {
-//   console.log("ADD");
-//   cartCtx.addItem({ ...item, amount: 1 });
-// };
-
 const cartItems = (
   <ul className={classes["cart-items"]}>
-    {productsArr.map((item) => (
+    {productsArr.map((product) => (
       <CartItem
-        key={item.id}
-        title={item.title}
-        imageUrl={item.imageUrl}
-        price={item.price}
-        quantity={item.quantity}
+        key={product.id}
+        title={product.title}
+        imageUrl={product.imageUrl}
+        price={product.price}
+        amount={product.amount}
       />
     ))}
   </ul>
@@ -60,7 +50,6 @@ const cartItems = (
 const Cart = (props) => {
   return (
     <Modal className={classes.cart} onClose={props.onClose}>
-      <h2>Your Shopping Cart</h2>
       <div>
         {cartItems}
         <span className={classes.total}>Total Amount</span>
@@ -70,7 +59,7 @@ const Cart = (props) => {
         <button className={classes["button--alt"]} onClick={props.onClose}>
           Close
         </button>
-        <button className={classes["button--alt"]}>Order</button>
+        <button className={classes.button}>Order</button>
       </div>
     </Modal>
   );

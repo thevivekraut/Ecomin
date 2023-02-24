@@ -8,26 +8,25 @@ const CartItem = (props) => {
   const removeHandler = () => {
     console.log("removehandler");
   };
-console.log(props);
+
   const price = `$${props.price.toFixed(2)}`;
+
   return (
     <li className={classes["cart-item"]}>
       <div>
-        {/* <h3>{props.title}</h3> */}
-        <div><img className={classes.imgContainer} src={props.imageUrl}></img></div>
+        <div>
+          <img className={classes.imgContainer} src={props.imageUrl} alt="productImages"></img>
+        </div>
         <div className={classes.summary}>
           <span className={classes.item}>{props.title}</span>
           <span className={classes.price}>{price}</span>
           <span className={classes.amount}>x{props.amount}</span>
           <div className={classes.quantity}>
-          <span>{props.quantity}</span>
-        </div>
+            <span>{props.amount}</span>
+          </div>
         </div>
       </div>
       <div className={classes.details}>
-        {/* <div className={classes.quantity}>
-          <span>{props.quantity}</span>
-        </div> */}
         <div className={classes.actions}>
           <button onClick={removeHandler}>-</button>
           <button onClick={addHandler}>+</button>
